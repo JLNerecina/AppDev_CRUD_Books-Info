@@ -20,7 +20,7 @@ A simple and clean **CRUD (Create, Read, Update, Delete)** web application for m
 - Fields: `id`, `title`, `author`, `genre`, `year_published`, `pages`, `image`, `created_at`
 
 ### Screenshots
-![Books CRUD Dashboard](screenshot.png)  
+![Books CRUD Dashboard](https://github.com/JLNerecina/AppDev_CRUD_Books-Info/blob/main/AppDev_Books_Info.png)  
 
 ### How to Run Locally
 1. Clone the repository
