@@ -1,6 +1,13 @@
 <?php
 include 'config.php';
-$stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
+
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+if ($search !== '') {
+    $stmt = $pdo->prepare("SELECT * FROM books WHERE title LIKE :q OR author LIKE :q OR genre LIKE :q ORDER BY created_at DESC");
+    $stmt->execute(['q' => "%{$search}%"]);
+} else {
+    $stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
+}
 $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -28,8 +35,25 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="create.php" class="btn btn-success btn-lg">+ Add New Book</a>
         </div>
 
+        <form class="row g-2 mb-4" method="get" action="index.php">
+            <div class="col-md-10">
+                <input type="search" name="search" class="form-control form-control-lg" placeholder="Search books by title, author, or genre" value="<?= htmlspecialchars($search) ?>">
+            </div>
+            <div class="col-md-2 d-flex gap-2">
+                <button type="submit" class="btn btn-primary btn-lg w-100">Search</button>
+                <?php if ($search !== ''): ?>
+                    <a href="index.php" class="btn btn-secondary btn-lg w-100">Reset</a>
+                <?php endif; ?>
+            </div>
+        </form>
+
         <div class="card bg-dark border-success">
             <div class="card-body">
+                <?php if ($search !== '' && count($books) === 0): ?>
+                    <div class="alert alert-warning text-dark" role="alert">
+                        No books found for "<?= htmlspecialchars($search) ?>".
+                    </div>
+                <?php endif; ?>
                 <table class="table table-dark table-hover">
                     <thead>
                         <tr>
