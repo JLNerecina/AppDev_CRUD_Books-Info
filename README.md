@@ -1,7 +1,7 @@
 # 📖 **Bookshelf Mastery**  
 **A Sleek & Modern CRUD App for Book Lovers**  
 
-![Books CRUD Hero](https://github.com/JLNerecina/AppDev_CRUD_Books-Info/blob/main/AppDev_Books_Info.png)
+![Books CRUD Hero](https://github.com/JLNerecina/AppDev_CRUD_Books-Info/blob/main/AppDev_Books_Information.png)
 
 **Turn your book collection into a beautiful digital library** — built with **PHP 8 + PDO** for rock-solid security and lightning-fast performance.  
 
